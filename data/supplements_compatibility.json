@@ -1,0 +1,20 @@
+{
+    "Mg": {
+        "incompatible": ["E", "Fe"]
+    },
+    "C": {
+        "incompatible": ["B12"]
+    },
+    "B12": {
+        "incompatible": ["C", "E", "Fe"]
+    },
+    "Fe": {
+        "incompatible": ["B12", "Mg"]
+    },
+    "D3": {
+        "incompatible": ["E"]
+    },
+    "E": {
+        "incompatible": ["B12", "D3", "Mg"]
+    }
+}

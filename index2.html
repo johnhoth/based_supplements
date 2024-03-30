@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>Проверка совместимости добавок</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Проверка совместимости добавок</h1>
+        <div class="flex-container">
+            <div>
+                <input list="supplements-datalist" id="search" placeholder="Поиск добавки">
+                <datalist id="supplements-datalist">
+                <!-- Список добавок будет добавлен здесь -->
+                </datalist>
+                <div id="selected-supplements"></div> <!-- Измените id здесь -->
+            </div>
+            <div id="supplements-menu"> <!-- Меню справа -->
+                <!-- Элементы меню будут добавлены здесь -->
+            </div>
+        </div>
+        <div id="selected-supplements-display"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
