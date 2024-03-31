@@ -1,9 +1,39 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#selected-supplements-space li {
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 0.8s ease forwards;
+}
+
+
 /* Стили для контейнера добавок */
 #supplements-container {
     border: none;
     display: flex; /* Использует flexbox для управления расположением элементов */
-    width: 60%; /* Занимает 80% ширины экрана */
-    margin: 20px auto; /* Центрирует элемент и добавляет отступ сверху и снизу */
+    width: 70%; /* Занимает 80% ширины экрана */
+    margin: 5px auto; /* Центрирует элемент и добавляет отступ сверху и снизу */
+}
+#supplements-menu {
+    display: flex;
+    flex-direction: column; /* Добавлено: элементы располагаются в колонку */
+    align-items: center; /* Добавлено: выравнивает элементы по центру */
+    justify-content: center; /* Добавлено: выравнивает элементы по центру */
+}
+#reset-button {
+    width: 80%; /* Добавлено: устанавливает ширину кнопки */
+    height: 50px; /* Добавлено: устанавливает высоту кнопки */
+    font-size: 20px; /* Добавлено: устанавливает размер шрифта кнопки */
 }
 
 /* Стили для области отображения выбранных добавок */
@@ -22,21 +52,48 @@
     left: 50%; /* центрирует элементы по горизонтали */
     top: 50%; /* центрирует элементы по вертикали */
     transform-origin: 50% 100%; /* задает точку преобразования */
+    font-size: 30px; /* устанавливает крупный размер шрифта */
 }
 
 /* Стили для области отображения списка добавок */
 #supplements-menu {
     border: none;
-    width: 10%; 
+    width: 30%; 
     min-height: 200px; /* Задает минимальную высоту */
 }
 
-#search-input {
-    width: 60%; /* Занимает 60% ширины экрана */
+#search-container {
+    position: relative; /* Делает контейнер относительно позиционированным, чтобы результаты автозаполнения могли быть абсолютно позиционированы относительно него */
+    width: 70%; /* Занимает 70% ширины экрана */
     margin: 0 auto; /* Центрирует элемент */
-    font-size: 1.5em; /* Устанавливает крупный размер шрифта */
-    display: block; /* Делает элемент блочным, чтобы он занимал всю ширину */
 }
+
+#search-input {
+    width: 100%; 
+    font-size: 1.5em; 
+    display: block; 
+    background-color: black; /* Добавлено: темный фон */
+    color: white; /* Добавлено: белый текст */
+}
+
+#autocomplete-results {
+    position: absolute;
+    font-size: 1.1em; 
+    width: 100%; 
+    background-color: black; /* Добавлено: темный фон */
+    /* border: 2px solid #333; */
+    z-index: 1000;
+    max-height: 120px; 
+    overflow-y: auto;
+    box-shadow: 0px 8px 16px 0px #333;
+}
+
+#autocomplete-results div {
+    padding: 10px;
+    color: white; /* Изменено: белый текст */
+    cursor: pointer;
+}
+
 
 
 .supplement > img {
@@ -44,6 +101,8 @@
 }
 
 #supplements-list {
+    column-count: 4;
+    column-gap: 5px;
     padding-left: 0; /* убирает отступ слева */
 }
 
@@ -54,6 +113,7 @@
     padding: 10px; /* отступ внутри рамки */
     margin-bottom: 5px; /* отступ между элементами списка */
     transition: border-color 1s ease; /* плавное изменение цвета рамки */
+    font-size: large;
 }
 
 #supplements-list li.selected {
@@ -61,7 +121,7 @@
 }
 
 #compatibility-result {
-    width: 60%; /* задает ширину блока */
+    width: 70%; /* задает ширину блока */
     margin: auto; /* центрирует блок */
     font-size: 20px; /* увеличивает размер шрифта */
 }

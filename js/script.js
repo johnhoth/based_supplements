@@ -21,6 +21,67 @@ function fetchCompatibility() {
         .catch(error => console.error('Error:', error));
 }
 
+let searchInput = document.querySelector('#search-input');
+let autocompleteResults = document.querySelector('#autocomplete-results');
+
+searchInput.addEventListener('input', function() {
+    let searchQuery = this.value.toLowerCase();
+    autocompleteResults.innerHTML = '';
+    if (searchQuery.trim() !== '') { // Проверка на пустое поле ввода
+        let results = supplements.filter(supplement => supplement.name.toLowerCase().startsWith(searchQuery));
+        results.forEach(result => {
+            let resultElement = document.createElement('div');
+            resultElement.textContent = result.name;
+            resultElement.addEventListener('click', function() {
+                searchInput.value = this.textContent;
+                autocompleteResults.innerHTML = '';
+                // Добавление выбранного элемента
+                let selectedSupplement = supplements.find(supplement => supplement.name.toLowerCase() === this.textContent.toLowerCase());
+                if (selectedSupplement) {
+                    selectedSupplement.selected = true;
+                    displaySupplements(); // Обновите отображение добавок
+                }
+            });
+            autocompleteResults.appendChild(resultElement);
+        });
+    }
+});
+
+
+
+searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && autocompleteResults.children.length >= 1) {
+        searchInput.value = autocompleteResults.firstChild.textContent;
+        autocompleteResults.innerHTML = '';
+        // Добавление выбранного элемента
+        let selectedSupplement = supplements.find(supplement => supplement.name.toLowerCase() === searchInput.value.toLowerCase());
+        if (selectedSupplement) {
+            selectedSupplement.selected = true;
+            displaySupplements(); // Обновите отображение добавок
+            displaySelectedSupplements(); // Обновите отображение выбранных добавок
+            searchInput.value = ''; // Добавлено: очищает поле ввода
+        }
+    }
+});
+
+autocompleteResults.addEventListener('click', function(e) {
+    if (e.target.tagName.toLowerCase() === 'div') { // Убедитесь, что кликнули по элементу div
+        let selectedSupplement = supplements.find(supplement => supplement.name.toLowerCase() === e.target.textContent.toLowerCase());
+        if (selectedSupplement) {
+            selectedSupplement.selected = true;
+            // let li = document.createElement('li');
+            // li.textContent = selectedSupplement.name;
+            // selectedSupplementsSpace.appendChild(li); // Добавляет сапплимент в центральное поле
+            displaySupplements(); // Обновите отображение добавок
+            displaySelectedSupplements(); // Обновите отображение выбранных добавок
+        }
+        searchInput.value = ''; // Очищает поле ввода
+        autocompleteResults.innerHTML = ''; // Очищает результаты автозаполнения
+    }
+});
+
+
+
 // Функция для проверки несовместимости
 function checkIncompatibility() {
     const selectedSupplements = supplements.filter(supplement => supplement.selected).map(supplement => supplement.name);
@@ -56,20 +117,32 @@ function displaySupplements() {
     });
 }
 
+
 // Функция для отображения выбранных сапплиментов по кругу (охиреть, какая красота)
 function displaySelectedSupplements() {
     const selectedSupplementsSpace = document.getElementById('selected-supplements-space');
     selectedSupplementsSpace.innerHTML = ''; // очищаем область
 
+    const supplementsContainer = document.getElementById('supplements-container');
     const selectedSupplements = supplements.filter(supplement => supplement.selected); // выбираем только выбранные сапплименты
-    const angleStep = 360 / selectedSupplements.length; // вычисляем шаг угла
 
-    selectedSupplements.forEach((supplement, index) => {
-        const li = document.createElement('li');
-        li.textContent = supplement.name;
-        li.style.transform = `rotate(${angleStep * index}deg) translateY(-150px) rotate(-${angleStep * index}deg)`; // устанавливаем угол поворота
-        selectedSupplementsSpace.appendChild(li);
-    });
+    if (selectedSupplements.length === 1) {
+        supplementsContainer.style.justifyContent = 'center';
+        selectedSupplements.forEach((supplement, index) => {
+            const li = document.createElement('li');
+            li.textContent = supplement.name;
+            selectedSupplementsSpace.appendChild(li);
+        });
+    } else {
+        const angleStep = 360 / selectedSupplements.length; // вычисляем шаг угла
+        selectedSupplements.forEach((supplement, index) => {
+            const li = document.createElement('li');
+            li.textContent = supplement.name;
+            let additional = 0.5 * (selectedSupplements.length === 2); // in this case i wanted them to be on 3 and 9 o'clock
+            li.style.transform = `rotate(${angleStep * (index + additional)}deg) translateY(-150px) rotate(-${angleStep * (index + additional)}deg)`; // устанавливаем угол поворота
+            selectedSupplementsSpace.appendChild(li);
+        });
+    }
 }
 
 // Функция для отображения списка сапплиментов
@@ -96,15 +169,37 @@ function displaySupplements() {
     });
 }
 
+function drawIncompatibilityLines(incompatiblePairs) {
+
+}
+
+document.querySelector('#reset-button').addEventListener('click', function() {
+    supplements.forEach(supplement => {
+        supplement.selected = false;
+    });
+    document.querySelector('#supplements-list').innerHTML = '';
+    document.querySelector('#selected-supplements-space').innerHTML = ''; // Добавлено
+    incompatiblePairs = [];
+    displaySupplements(); // Обновите отображение добавок
+});
+
 // Функция для отображения результата проверки несовместимости
 function displayIncompatibilityResult(incompatiblePairs) {
-    const resultField = document.getElementById('compatibility-result');
-    if (incompatiblePairs.length > 0) {
+    const resultField = document.getElementById('compatibility-message');
+    const titleField = document.getElementById('compatibility-title');
+    if (supplements.filter(supplement => supplement.selected).length === 0) {
+        titleField.textContent = 'Compatibility result:';
+        resultField.textContent = 'Please select supplements to check compatibility.';
+    } else if (incompatiblePairs.length > 0) { 
+        titleField.textContent = 'Compatibility result: ❌';
         resultField.textContent = 'Incompatible pairs: ' + incompatiblePairs.map(pair => pair.join(' and ')).join(', ');
+        drawIncompatibilityLines(incompatiblePairs);
     } else {
-        resultField.textContent = 'No incompatible pairs.';
+        titleField.textContent = 'Compatibility result: ✅';
+        resultField.textContent = 'Great! All selected supplements are compatible.';
     }
 }
+
 
 // Читаем файл с сапплиментами при загрузке страницы
 window.onload = function() {

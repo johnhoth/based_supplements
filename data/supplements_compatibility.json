@@ -1,20 +1,56 @@
 {
-    "Mg": {
-        "incompatible": ["E", "Fe"]
+    "A": {
+        "incompatible": ["B12", "K"]
     },
-    "C": {
+    "B1": {
+        "incompatible": ["B2", "B3", "B6", "B12", "C", "Mg", "Ca"]
+    },
+    "B2": {
+        "incompatible": ["B12", "Fe", "Cu"]
+    },
+    "B5": {
+        "incompatible": ["Cu"]
+    },
+    "B6": {
         "incompatible": ["B12"]
     },
+    "B9": {
+        "incompatible": ["Zn"]
+    },
     "B12": {
-        "incompatible": ["C", "E", "Fe"]
+        "incompatible": ["A", "B1", "B2", "C", "E", "Fe", "Cu"]
     },
-    "Fe": {
-        "incompatible": ["B12", "Mg"]
+    "C": {
+        "incompatible": ["A", "B1", "B12", "Cu"]
     },
-    "D3": {
+    "D": {
         "incompatible": ["E"]
     },
     "E": {
-        "incompatible": ["B12", "D3", "Mg"]
+        "incompatible": ["A", "B12", "D", "K", "Fe", "Mg", "Cu", "Zn"]
+    },
+    "K": {
+        "incompatible": ["A", "E"]
+    },
+    "Bor": {
+        "incompatible": []
+    },
+    "Fe": {
+        "incompatible": ["A", "B2", "B12", "E", "Mg", "Ca", "Zn"]
+    },
+    "Mg": {
+        "incompatible": ["B1", "E", "Fe", "P"]
+    },
+    "Cu": {
+        "incompatible": ["B2", "B5", "B6", "B12", "C", "E", "Fe", "Zn"]
+    },
+    "Ca": {
+        "incompatible": ["B1", "B6", "B12", "Fe", "Mg", "P", "Zn"]
+    },
+    "P": {
+        "incompatible": ["D", "Mg", "Ca"]
+    },
+    "Zn": {
+        "incompatible": ["A", "B2", "B6", "B9", "Cu", "E", "Fe", "Ca"]
     }
 }

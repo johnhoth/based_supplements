@@ -24,7 +24,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <!-- Avatar image in top left corner -->
-  <img src="images/avatar.jpeg" style="width:100%">
+  <img src="images/avatar.png" style="width:100%">
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
@@ -57,30 +57,39 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <div class="w3-padding-large" id="main">
   <!-- Header/Home -->
   <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">Supplements compatibility </span></h1>
-    <!-- <p>based</p> -->
+    <h1 class="w3-jumbo" style="margin-bottom: 0;"><span class="w3-hide-small">Supplements compatibility </span></h1>
+    <p style="color: white; padding: 0px; margin-top: 0;">Click on the supplements on the right to select or deselect them or use the search</p>
+
     <!-- <img src="/images/man.jpg" alt="boy" class="w3-image" width="992" height="1108"> -->
   </header>
 
   <div id="app">
     <!-- Поле для поиска добавок -->
-    <input type="text" id="search-input" placeholder="Search for supplements...">
+    <div id="search-container">
+      <!-- Поле для ввода текста поиска -->
+      <input type="text" id="search-input" placeholder="Search for supplements..." autocomplete="off">
+      <!-- Результаты поиска -->
+      <div id="autocomplete-results"></div>
+   </div>
 
     <!-- Область для отображения выбранных добавок и списка добавок -->
     <div id="supplements-container">
         <div id="selected-supplements-space"></div>
         <div id="supplements-menu">
             <ul id="supplements-list"></ul>
+            <button id="reset-button">Reset</button>
         </div>
+        
     </div>
+
   </div>
   
 
 
   <!-- Результат о совместимости добавок -->
 <div id="compatibility-result" class="w3-content w3-justify w3-text-grey w3-padding-64">
-  <h1 class="w3-text-light-grey">Compatibility Result</h2>
-  <hr style="width:200px" class="w3-opacity">
+  <h1 id="compatibility-title" class="w3-text-light-grey">Compatibility result:</h2>
+  <!-- <hr style="width:200px" class="w3-opacity"> -->
   <p id="compatibility-message">Please select supplements to check compatibility.</p>
 </div>
 

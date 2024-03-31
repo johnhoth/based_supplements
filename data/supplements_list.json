@@ -1,20 +1,59 @@
 [
     {
-        "name": "Mg"
+        "name": "A"
     },
     {
-        "name": "C"
+        "name": "B1"
+    },
+    {
+        "name": "B2"
+    },
+    {
+        "name": "B3"
+    },
+    {
+        "name": "B5"
+    },
+    {
+        "name": "B6"
+    },
+    {
+        "name": "B9"
     },
     {
         "name": "B12"
     },
     {
-        "name": "Fe"
+        "name": "C"
     },
     {
-        "name": "D3"
+        "name": "D"
     },
     {
         "name": "E"
+    },
+    {
+        "name": "K"
+    },
+    {
+        "name": "Bor"
+    },
+    {
+        "name": "Fe"
+    },
+    {
+        "name": "Mg"
+    },
+    {
+        "name": "Cu"
+    },
+    {
+        "name": "Ca"
+    },
+    {
+        "name": "P"
+    },
+    {
+        "name": "Zn"
     }
 ]
