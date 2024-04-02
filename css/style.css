@@ -64,7 +64,7 @@ body {
     transform-origin: 50% 100%; /* задает точку преобразования */
     font-size: 30px; /* устанавливает крупный размер шрифта */
 }
-#incompatibility-canvas {
+/* #incompatibility-canvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -72,7 +72,7 @@ body {
     height: 100%;
     z-index: 999;
     background: transparent;
-}
+} */
 
 
 /* Стили для области отображения списка добавок */
@@ -115,7 +115,6 @@ body {
     color: white; /* Изменено: белый текст */
     cursor: pointer;
 }
-
 
 
 .supplement > img {
