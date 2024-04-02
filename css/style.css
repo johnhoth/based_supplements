@@ -148,3 +148,12 @@ body {
     font-size: 20px; /* увеличивает размер шрифта */
 }
 
+.responsive-image {
+    width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    .responsive-image {
+        width: 100%;
+    }
+}
