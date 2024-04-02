@@ -3,7 +3,7 @@
     to { opacity: 1; }
 }
 
-#selected-supplements-space li {
+#selected-supplements-space-container li {
     animation: fadeIn 0.8s ease;
 }
 
@@ -21,8 +21,8 @@
 #supplements-container {
     border: none;
     display: flex; /* Использует flexbox для управления расположением элементов */
-    width: 70%; /* Занимает 80% ширины экрана */
-    margin: 5px auto; /* Центрирует элемент и добавляет отступ сверху и снизу */
+    width: 70%; /* Занимает 70% ширины экрана */
+    margin: 15px auto; /* Центрирует элемент и добавляет отступ сверху и снизу */
 }
 #supplements-menu {
     display: flex;
@@ -35,14 +35,21 @@
     height: 50px; /* Добавлено: устанавливает высоту кнопки */
     font-size: 20px; /* Добавлено: устанавливает размер шрифта кнопки */
 }
-
+#selected-supplements-space-container {
+    width: 70%; 
+    display: flex;
+    margin: 0 10px;
+    position: relative;
+    justify-content: space-between;
+}
 /* Стили для области отображения выбранных добавок */
 #selected-supplements-space {
     list-style: none;
+
     position: relative; /* делает область относительно позиционированной */
     width: 300px; /* задает ширину области */
     height: 300px; /* задает высоту области */
-    margin: 0 auto; /* центрирует область */
+    margin: 20px auto; /* центрирует область */
 }
 
 #selected-supplements-space li {
@@ -54,10 +61,21 @@
     transform-origin: 50% 100%; /* задает точку преобразования */
     font-size: 30px; /* устанавливает крупный размер шрифта */
 }
+#incompatibility-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: transparent;
+}
+
 
 /* Стили для области отображения списка добавок */
 #supplements-menu {
     border: none;
+    margin: 0 10px;
     width: 30%; 
     min-height: 200px; /* Задает минимальную высоту */
 }
@@ -82,7 +100,7 @@
     width: 100%; 
     background-color: black; /* Добавлено: темный фон */
     /* border: 2px solid #333; */
-    z-index: 1000;
+    z-index: 998;
     max-height: 120px; 
     overflow-y: auto;
     box-shadow: 0px 8px 16px 0px #333;
@@ -103,12 +121,13 @@
 #supplements-list {
     column-count: 4;
     column-gap: 5px;
+    text-align: center;
     padding-left: 0; /* убирает отступ слева */
 }
 
 #supplements-list li {
     list-style: none;
-    border: 2px solid white; /* рамка вокруг каждого сапплемента */
+    border: 2.5px solid white; /* рамка вокруг каждого сапплемента */
     color: white; /* белый цвет текста */
     padding: 10px; /* отступ внутри рамки */
     margin-bottom: 5px; /* отступ между элементами списка */
@@ -125,3 +144,4 @@
     margin: auto; /* центрирует блок */
     font-size: 20px; /* увеличивает размер шрифта */
 }
+

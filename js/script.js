@@ -145,6 +145,14 @@ function displaySelectedSupplements() {
     }
 }
 
+function drawIncompatibilityLines(incompatiblePairs) {
+    if (!incompatiblePairs) {
+        return;
+    }
+    // разработчику нехватило скилла нарисовать линии
+}
+
+
 // Функция для отображения списка сапплиментов
 function displaySupplements() {
     const supplementsList = document.getElementById('supplements-list');
@@ -169,18 +177,13 @@ function displaySupplements() {
     });
 }
 
-function drawIncompatibilityLines(incompatiblePairs) {
-
-}
-
 document.querySelector('#reset-button').addEventListener('click', function() {
     supplements.forEach(supplement => {
         supplement.selected = false;
     });
-    document.querySelector('#supplements-list').innerHTML = '';
-    document.querySelector('#selected-supplements-space').innerHTML = ''; // Добавлено
-    incompatiblePairs = [];
     displaySupplements(); // Обновите отображение добавок
+    displaySelectedSupplements(); // Обновите отображение выбранных добавок
+    displayIncompatibilityResult(); // Обновите отображение результата проверки несовместимости
 });
 
 // Функция для отображения результата проверки несовместимости
@@ -193,13 +196,12 @@ function displayIncompatibilityResult(incompatiblePairs) {
     } else if (incompatiblePairs.length > 0) { 
         titleField.textContent = 'Compatibility result: ❌';
         resultField.textContent = 'Incompatible pairs: ' + incompatiblePairs.map(pair => pair.join(' and ')).join(', ');
-        drawIncompatibilityLines(incompatiblePairs);
     } else {
         titleField.textContent = 'Compatibility result: ✅';
         resultField.textContent = 'Great! All selected supplements are compatible.';
     }
+    drawIncompatibilityLines(incompatiblePairs);
 }
-
 
 // Читаем файл с сапплиментами при загрузке страницы
 window.onload = function() {
