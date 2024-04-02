@@ -6,7 +6,7 @@ function fetchSupplements() {
         .then(data => {
             supplements = data.map(supplement => ({ ...supplement, selected: false }));
             // Сортируем сапплименты по имени сразу после получения
-            supplements.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+            // supplements.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
             displaySupplements();
         })
         .catch(error => console.error('Error:', error));
